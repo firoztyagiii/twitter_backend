@@ -10,9 +10,7 @@ dotenv.config({
 
 const init = async () => {
   try {
-    await mongoose.connect(
-      `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@twittercluster.ld8piwe.mongodb.net/`
-    );
+    await mongoose.connect("mongodb://127.0.0.1:27017/twitter");
     app.listen(process.env.PORT, () => {
       console.log(`Listening to Port ${process.env.PORT} and connected to DB.`);
     });

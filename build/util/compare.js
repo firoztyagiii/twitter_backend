@@ -12,20 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const path_1 = __importDefault(require("path"));
-const mongoose_1 = __importDefault(require("mongoose"));
-const dotenv_1 = __importDefault(require("dotenv"));
-const app_1 = __importDefault(require("./app"));
-dotenv_1.default.config({
-    path: path_1.default.join(__dirname, "../config.env"),
+exports.comparePassword = void 0;
+const bcrypt_1 = __importDefault(require("bcrypt"));
+const comparePassword = (userPassword, DbPassword) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield bcrypt_1.default.compare(userPassword, DbPassword);
 });
-const init = () => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        yield mongoose_1.default.connect("mongodb://127.0.0.1:27017/twitter");
-        app_1.default.listen(process.env.PORT, () => {
-            console.log(`Listening to Port ${process.env.PORT} and connected to DB.`);
-        });
-    }
-    catch (err) { }
-});
-init();
+exports.comparePassword = comparePassword;

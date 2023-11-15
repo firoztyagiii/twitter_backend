@@ -28,6 +28,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const userController = __importStar(require("../controller/userController"));
+const validate = __importStar(require("../util//validate"));
 const router = express_1.default.Router();
-router.route("/login").get(userController.login);
+router.route("/signup").post(validate.validateSignup, userController.signUp);
+router.route("/login").post(validate.validateLogin, userController.login);
 exports.default = router;
